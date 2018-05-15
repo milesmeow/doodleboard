@@ -1,3 +1,13 @@
+let socket = io.connect("http://localhost:8888");
+console.log(socket);
+socket.on("doodMessageFromServer", function(data) {
+  console.log(data);
+  socket.emit("doodClientMessage", { state: "hello from client" });
+});
+
+
+
+
 const canvas = document.querySelector('#draw');
 const ctx = canvas.getContext('2d');
 canvas.width = window.innerWidth;
