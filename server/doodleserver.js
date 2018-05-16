@@ -11,7 +11,12 @@ const io = require('socket.io')(server);
 const startPort = 8888;
 
 let clientID = 0; // these are unique ids that the server gives to clients
-// let clientColors = [];
+
+// key is room name/id
+// 'theRoom' : [{color: '#BADDA55', coords:[x,y,x,y,...] }]
+// the value is basically an array of the history of the strokes
+// Currently we only have one Room so we'll call it 'theRoom'
+let doodRoomsData = {};
 
 // have this so that I can serve up static files like .css, .js, etc.
 // https://expressjs.com/en/starter/static-files.html
@@ -55,11 +60,31 @@ io.on('connection', function (socket) {
     console.log('message: ' + msg);
   });
 
-  // listen for drawing coordinates from client
+
+
+  /** 
+   *  
+   * listen for drawing coordinates from client
+  */
+
+  // this message is for real time point by point
   socket.on("doodCoords", function(data) { 
     // broadcast to all except for the sender
-    // console.log(`id: `, id);
     socket.broadcast.emit("broadcastCoords", data);
+  });
+
+  // this is real time stroke by stroke
+  socket.on("doodStroke", function (data) {
+    // broadcast to all except for the sender
+    socket.broadcast.emit("broadcastStroke", data);
+
+    // also save it to memory
+    // first check to see if we have a key already
+    if (!doodRoomsData.hasOwnProperty("theRoom")) {
+      doodRoomsData["theRoom"] = [];
+    }
+    doodRoomsData['theRoom'].push(data);
+    // console.log(doodRoomsData);
   });
 
 

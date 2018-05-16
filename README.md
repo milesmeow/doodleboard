@@ -13,6 +13,7 @@ HTML 5 canvas
 [WesBos 30 Drawing on HTML5 canvas](https://courses.wesbos.com/account/access/5aad96964f754d18086b4cbe/view/194129962)
 [Basic usage of canvas](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Basic_usage)
 [CanvasRenderingContext2D.globalCompositeOperation](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/globalCompositeOperation)
+[Random Color Generator](https://www.paulirish.com/2009/random-hex-color-code-snippets/)
 
 socket.io
 [socket.io](https://socket.io/)
