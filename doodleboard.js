@@ -1,8 +1,14 @@
 let socket = io.connect("http://localhost:8888");
-console.log(socket);
 socket.on("doodMessageFromServer", function(data) {
-  console.log(data);
   socket.emit("doodClientMessage", { state: "hello from client" });
+});
+
+// someone is sending me coords to draw
+socket.on("broadcastCoords", function(data) {
+  ctx.beginPath();
+  ctx.moveTo(data.lX, data.lY);
+  ctx.lineTo(data.cX, data.cY);
+  ctx.stroke();
 });
 
 
@@ -32,11 +38,12 @@ function draw(e) {
   ctx.lineTo(e.offsetX, e.offsetY);
   ctx.stroke();
 
-  ctx.globalCompositeOperator = 'multiply';
+  // ctx.globalCompositeOperator = 'multiply';
 
+  socket.emit("doodCoords", { lX: lastX, lY: lastY, cX : e.offsetX, cY : e.offsetY });
+  
   [lastX, lastY] = [e.offsetX, e.offsetY];
 
-  // console.log(e);
 }
 
 canvas.addEventListener('mousemove', draw);
