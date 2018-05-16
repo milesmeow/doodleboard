@@ -1,4 +1,6 @@
-const path = require("path");
+const path = require('path');
+
+var Database = require("../model/database.js");
 
 /* https://stackoverflow.com/questions/17696801/express-js-app-listen-vs-server-listen */
 const express = require('express');
@@ -24,7 +26,7 @@ app.get('/', (req, res, next) => {
 
 // })
 
-
+Database.testConnection();
 
 
 server.listen(startPort, () => {
