@@ -1,6 +1,7 @@
 const path = require('path');
 
-var Database = require("../model/database.js");
+// var Database = require("../model/database.js");
+var Mongoose = require("../model/mongoosedb.js");
 
 /* https://stackoverflow.com/questions/17696801/express-js-app-listen-vs-server-listen */
 const express = require('express');
@@ -16,7 +17,7 @@ let clientID = 0; // these are unique ids that the server gives to clients
 // 'theRoom' : [{color: '#BADDA55', coords:[x,y,x,y,...] }]
 // the value is basically an array of the history of the strokes
 // Currently we only have one Room so we'll call it 'theRoom'
-let doodRoomsData = {};
+let doodRoomsData = {}; // this is here to save the data for multiple rooms ...for the future
 
 // have this so that I can serve up static files like .css, .js, etc.
 // https://expressjs.com/en/starter/static-files.html
@@ -49,16 +50,16 @@ server.listen(startPort, () => {
 
 // console.log('io: ', io);
 io.on('connection', function (socket) {
-  console.log('a user connected');
+  console.log('a user connected... socket.id: ', socket.id);
 
   socket.on('disconnect', function () {
-    console.log('a user disconnected');
+    console.log('a user disconnected... socket.id: ', socket.id);
   });
 
-  socket.on("doodClientMessage", function(data) {
-    msg = JSON.parse(msg);
-    console.log('message: ' + msg);
-  });
+  // socket.on("doodClientMessage", function(data) {
+  //   msg = JSON.parse(msg);
+  //   console.log('message: ' + msg);
+  // });
 
 
 
@@ -87,7 +88,22 @@ io.on('connection', function (socket) {
     // console.log(doodRoomsData);
   });
 
+  socket.on('doodSave', () => {
+    // save current sess data to the database
 
+    console.log('received doodSave: ' , socket.id);
+
+    if (doodRoomsData.hasOwnProperty("theRoom")) {
+      // this should probably be in a promise
+      Mongoose.saveToDB(socket.id, doodRoomsData["theRoom"])
+      .then( (result) => {
+        console.log('doodleserver mongoose db ok: result: ', result);
+      })
+
+    }
+    // after we save it to the DB, we have to return the unique URL to the client
+  
+  })
 
 });
 

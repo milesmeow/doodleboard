@@ -14,7 +14,14 @@ class App extends React.Component {
    * @param {This is from the Save button} event
    */
   handleSave(event) {
-    console.log("Save Button is pressed");
+    console.log("Save Button is pressed...emitting message from client: ", socket.id);
+
+    this.props.saveDrawing();
+    // socket.emit('doodSave', socket.id);
+    // we want to send a POST request to the server so that 
+    // it notifies them to save the current session and current canvas data to the database
+
+
   }
 
   render() {

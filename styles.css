@@ -5,3 +5,8 @@
     #draw {
       border:5px solid goldenrod;
     }
+
+    #status-text {
+      width: 150px;
+      border:2px solid powderblue;
+    }

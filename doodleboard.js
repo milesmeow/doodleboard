@@ -1,5 +1,11 @@
 let socket = io.connect("http://localhost:8888");
 
+let mySocketID;
+
+socket.on('connect', () => {
+  mySocketID = socket.id; // this is a unique ID...the server also receives this
+  console.log(socket.id);
+});
 
 socket.on("doodMessageFromServer", function(data) {
   socket.emit("doodClientMessage", { state: "hello from client" });
