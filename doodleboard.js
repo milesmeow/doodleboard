@@ -1,7 +1,10 @@
 let socket = io.connect("http://localhost:8888");
+
+
 socket.on("doodMessageFromServer", function(data) {
   socket.emit("doodClientMessage", { state: "hello from client" });
 });
+
 
 // someone is sending me coords to draw
 socket.on("broadcastCoords", function(data) {
@@ -39,7 +42,7 @@ function draw(e) {
   ctx.stroke();
 
   // ctx.globalCompositeOperator = 'multiply';
-
+  console.log(socket.id);
   socket.emit("doodCoords", { lX: lastX, lY: lastY, cX : e.offsetX, cY : e.offsetY });
   
   [lastX, lastY] = [e.offsetX, e.offsetY];

@@ -63,3 +63,5 @@ typings/
 
 # JT added
 package-lock.json
+build
+

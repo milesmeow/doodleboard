@@ -26,13 +26,21 @@ app.get('/', (req, res, next) => {
 
 // })
 
-Database.testConnection();
+// app.post('/save', (req, res, next) => {
+
+// })
 
 
 server.listen(startPort, () => {
   console.log("starting server on port:", startPort);
 });
 
+
+
+
+/**
+ * Socket stuff here
+ */
 
 // console.log('io: ', io);
 io.on('connection', function (socket) {
@@ -48,8 +56,9 @@ io.on('connection', function (socket) {
   });
 
   // listen for drawing coordinates from client
-  socket.on("doodCoords", function(data) { 
+  socket.on("doodCoords", function(id, data) { 
     // broadcast to all except for the sender
+    console.log(`id: `, id);
     socket.broadcast.emit("broadcastCoords", data);
   });
 
