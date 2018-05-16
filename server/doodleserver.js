@@ -56,9 +56,9 @@ io.on('connection', function (socket) {
   });
 
   // listen for drawing coordinates from client
-  socket.on("doodCoords", function(id, data) { 
+  socket.on("doodCoords", function(data) { 
     // broadcast to all except for the sender
-    console.log(`id: `, id);
+    // console.log(`id: `, id);
     socket.broadcast.emit("broadcastCoords", data);
   });
 

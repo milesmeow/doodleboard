@@ -33,6 +33,9 @@ let isDrawing = false;
 let lastX = 0;
 let lastY = 0;
 
+// for saving points of the stroke
+let currentStroke = [];
+
 function draw(e) {
   if (!isDrawing) return;
 
@@ -42,7 +45,7 @@ function draw(e) {
   ctx.stroke();
 
   // ctx.globalCompositeOperator = 'multiply';
-  console.log(socket.id);
+  // console.log(socket.id);
   socket.emit("doodCoords", { lX: lastX, lY: lastY, cX : e.offsetX, cY : e.offsetY });
   
   [lastX, lastY] = [e.offsetX, e.offsetY];
@@ -54,5 +57,7 @@ canvas.addEventListener('mousedown', (e) => {
   isDrawing = true;
   [lastX, lastY] = [e.offsetX, e.offsetY];
 });
-canvas.addEventListener('mouseup', () => isDrawing = false);
+canvas.addEventListener('mouseup', (e) => {
+  isDrawing = false;
+});
 canvas.addEventListener('mouseout', () => isDrawing = false);
