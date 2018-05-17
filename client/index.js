@@ -8,4 +8,8 @@ let saveDrawing = function () {
   socket.emit("doodSave", socket.id);
 }
 
-render(<App saveDrawing={saveDrawing}/>, document.getElementById('app-root'));
+let changeColor = function () {
+  console.log('changeColor is called')
+}
+
+render(<App saveDrawing={saveDrawing} changeColor={changeColor} />, document.getElementById('app-root'));

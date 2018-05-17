@@ -26,7 +26,7 @@ const Mongoose = {
           console.log('database error: ', err);
           reject(err);
         } else {
-          console.log('database updated: ', doc);
+          // console.log('database updated: ', doc);
           resolve(doc);
         }
       }); 
@@ -40,7 +40,7 @@ const Mongoose = {
             console.log('database error: ', err);
             reject(err);
           } else {
-            console.log('drawing found: ', doc);
+            // console.log('drawing found: ', doc);
             resolve(doc.data); //just retrieve the data
           } 
         })
@@ -54,7 +54,7 @@ const Mongoose = {
           console.log('database error: ', err);
           reject(err);
         } else {
-          console.log('drawing found: ', docs);
+          // console.log('drawing found: ', docs);
           resolve(docs); //just retrieve the data
         }
       })

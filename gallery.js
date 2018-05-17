@@ -15,7 +15,7 @@ socket.on("connect", () => {
     if (response !== "ERR") {
       drawingsData = response; //save it for other functions
       //now create buttons or links dynamically
-      const select = document.getElementById("selectDrawing");
+      const select = document.getElementById("select-drawing");
       
       // Optional: Clear all existing options first:
       select.innerHTML = select_list_prompt;
@@ -74,7 +74,7 @@ function drawStroke (data) {
 
 
 function displayDrawing() {
-    var x = document.getElementById("selectDrawing").value;
+    var x = document.getElementById("select-drawing").value;
     // console.log('Drawing is selected:', x);
     if ( x !== select_list_prompt) {
       // clear it

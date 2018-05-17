@@ -9,6 +9,7 @@ class App extends React.Component {
     // this.store = { drawingURL: '' };  //Not going to use this
 
     this.handleSave = this.handleSave.bind(this);
+    this.handleColorChoice = this.handleColorChoice.bind(this);
   }
 
   /**
@@ -26,18 +27,35 @@ class App extends React.Component {
     // Need to pass this down to the Control so we can show it in the text message
     // I'm doing this before the data has been saved...TODO:: need to do it after it has been saved.
     // Maybe even show a loading icon.
-    this.store.drawingURL = "localhost:8888/gallery/socket.id";
-    this.updateState(this.store);
+    // this.store.drawingURL = "localhost:8888/gallery/socket.id";
+    // this.updateState(this.store);
   }
 
-  
+  handleColorChoice(event) {
+    console.log("handleColorChoice Button is pressed");
+
+
+    this.props.changeColor(event); //bubble up event object
+    // // socket.emit('doodSave', socket.id);
+    // // we want to send a POST request to the server so that 
+    // // it notifies them to save the current session and current canvas data to the database
+
+    // // Need to pass this down to the Control so we can show it in the text message
+    // // I'm doing this before the data has been saved...TODO:: need to do it after it has been saved.
+    // // Maybe even show a loading icon.
+    // this.store.drawingURL = "localhost:8888/gallery/socket.id";
+    // this.updateState(this.store);
+  }
+
+
+
   render() {
     return (
     <div id="container">
       <div id="canvas-container">
         <canvas id="draw" width="600" height="600"></canvas>
       </div>
-      <Controls handleSave={this.handleSave} />
+      <Controls handleSave={this.handleSave} handleColorChoice={this.handleColorChoice} />
     </div>
     );
   }

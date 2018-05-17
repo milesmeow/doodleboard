@@ -17,7 +17,10 @@ html, body {
   justify-items: center;
 }
 
+
+
 #canvas-container {
+  margin: 20px;
   width: 600px;
   height: 600px;
 }
@@ -26,10 +29,55 @@ html, body {
   border:3px solid goldenrod;
 }
 #controls {
+  text-align: center;
+  padding: 10px;
+  margin: 15px;
   border:2px solid dodgerblue;
 }
 
+#gallery-container {
+  display: flex;
+  min-width: 80vw;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+#gallery-controls {
+  width: 580px;
+  text-align: center;
+  padding: 10px;
+  margin: 15px;
+  border:3px solid dodgerblue;
+}
+
 #status-text {
-  width: 100px;
+  width: 180px;
   border:2px solid powderblue;
+}
+
+
+#current-color {
+  background-color: blue;
+  width:25px;
+  height:25px;
+  border:1px solid grey;
+}
+
+#save-btn {
+    background-color: darkorange;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    /* display: inline-block; */
+    font-size: 20px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+#select-drawing {
+  font-size: 24px;
 }

@@ -7,15 +7,27 @@ class Controls extends React.Component {
   }
   
   render() {
-    return (
-      <div id='controls'>
+    // let colors = []
+    // for(let i=0; i<10; i++){
+    //   colors.push(
+    //     `<div class="color-option" id="color-${i}" onClick=${this.props.handleColorChoice}></div>`
+    //   )
+    // }
+
+    // <div id="current-color"></div>
+    //   <div id="color-palette">
+    //     {colors}
+    //   </div>
+
+    return (<div id="controls">
         <h2>doodleboard alpha</h2>
-        <textarea id="status-text" rows="5" cols="50">
-          You'll see status messages from the server here...
-        </textarea>
-        <div><button type="button" onClick={this.props.handleSave}>Save Drawing</button></div>
-      </div>
-    );
+        <textarea id="status-text" rows="5" cols="50" defaultValue="You'll see status messages from the server here..." />
+        <div>
+          <button id="save-btn" type="button" onClick={this.props.handleSave}>
+            Save Drawing
+          </button>
+        </div>
+      </div>);
   }
 }
 
