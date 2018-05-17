@@ -31,7 +31,37 @@ const Mongoose = {
         }
       }); 
     })
+  },
+
+    getDrawing : function (drawingID) {
+      return new Promise( (resolve, reject) => {
+        Drawing.find({drawingID: drawingID}, (err, doc) => {
+          if (err) {
+            console.log('database error: ', err);
+            reject(err);
+          } else {
+            console.log('drawing found: ', doc);
+            resolve(doc.data); //just retrieve the data
+          } 
+        })
+      })
+    },
+
+    getAllDrawings: function () {
+    return new Promise((resolve, reject) => {
+      Drawing.find({}, (err, docs) => {
+        if (err) {
+          console.log('database error: ', err);
+          reject(err);
+        } else {
+          console.log('drawing found: ', docs);
+          resolve(docs); //just retrieve the data
+        }
+      })
+    })
   }
+
+
 } 
 
 

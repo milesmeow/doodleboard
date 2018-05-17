@@ -1,12 +1,35 @@
-    html, body {
-      margin: 0;
-    }
+html, body {
+  margin: 0;
+}
+/* 
+* {
+  border:1px solid red;
+} */
 
-    #draw {
-      border:5px solid goldenrod;
-    }
+#app-root {
+  width:850px;
+}
 
-    #status-text {
-      width: 150px;
-      border:2px solid powderblue;
-    }
+#container {
+  display:flex;
+  width: 100%;
+  justify-content: space-between;
+  justify-items: center;
+}
+
+#canvas-container {
+  width: 600px;
+  height: 600px;
+}
+
+#draw {
+  border:3px solid goldenrod;
+}
+#controls {
+  border:2px solid dodgerblue;
+}
+
+#status-text {
+  width: 100px;
+  border:2px solid powderblue;
+}

@@ -49,8 +49,8 @@ const color = '#' + Math.floor(Math.random() * 16777215).toString(16);
 
 const canvas = document.querySelector('#draw');
 const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// canvas.width = window.innerWidth;
+// canvas.height = window.innerHeight;
 // for saving points of the stroke
 let currentStroke = [];
 

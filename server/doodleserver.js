@@ -28,13 +28,18 @@ app.get('/', (req, res, next) => {
   res.sendFile(path.join( __dirname, '..', "/index.html"));
 } )
 
-// app.get('/gallery', (req, res, next) => {
 
+// app.get('/gallery/:drawingID', (req, res, next) => {
+//   console.log(req.params.drawingID);
+//   res.status(200);
+//   res.sendFile(path.join(__dirname, '..', "/gallery.html"));
 // })
 
-// app.post('/save', (req, res, next) => {
-
-// })
+app.get('/gallery', (req, res, next) => {
+  // console.log(req.params.drawingID);
+  res.status(200);
+  res.sendFile(path.join(__dirname, '..', "/gallery.html"));
+})
 
 
 server.listen(startPort, () => {
@@ -91,18 +96,36 @@ io.on('connection', function (socket) {
   socket.on('doodSave', () => {
     // save current sess data to the database
 
-    console.log('received doodSave: ' , socket.id);
+    // console.log('received doodSave: ' , socket.id);
 
     if (doodRoomsData.hasOwnProperty("theRoom")) {
       // this should probably be in a promise
       Mongoose.saveToDB(socket.id, doodRoomsData["theRoom"])
       .then( (result) => {
-        console.log('doodleserver mongoose db ok: result: ', result);
+        // console.log('doodleserver mongoose db ok: result: ', result);
+      })
+      .catch( (error) => {
+        console.error('doodleserver mongoose db: ', error);
       })
 
     }
     // after we save it to the DB, we have to return the unique URL to the client
   
+  });
+
+  socket.on('getAllDrawings', (callback) => {
+    // console.log('got getAllDrawings message from client: ', socket.id);
+      // resolve('hello I love Promises');
+      Mongoose.getAllDrawings()
+        .then((result) => {
+          // console.log('doodleserver mongoose db ok: result: ', result);
+          callback(result);
+        })
+        .catch((error) => {
+          // console.error('doodleserver mongoose db: ', error);
+          callback("ERR");
+        })
+
   })
 
 });

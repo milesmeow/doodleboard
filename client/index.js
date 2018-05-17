@@ -8,4 +8,4 @@ let saveDrawing = function () {
   socket.emit("doodSave", socket.id);
 }
 
-render(<App saveDrawing={saveDrawing}/>, document.getElementById("app-root"));
+render(<App saveDrawing={saveDrawing}/>, document.getElementById('app-root'));
