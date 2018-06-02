@@ -6,6 +6,10 @@ html, body {
   border:1px solid red;
 } */
 
+body {
+  /* background-color: aliceblue; */
+}
+
 #app-root {
   width:850px;
 }
@@ -32,7 +36,7 @@ html, body {
   text-align: center;
   padding: 10px;
   margin: 15px;
-  border:2px solid dodgerblue;
+  /* border:2px solid dodgerblue; */
 }
 
 #gallery-container {
@@ -48,7 +52,7 @@ html, body {
   text-align: center;
   padding: 10px;
   margin: 15px;
-  border:3px solid dodgerblue;
+  /* border:3px solid dodgerblue; */
 }
 
 #status-text {
